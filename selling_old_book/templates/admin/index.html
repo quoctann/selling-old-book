@@ -1,0 +1,18 @@
+<!-- Trang chủ của phân hệ quản trị -->
+{% extends 'admin/master.html' %}
+
+
+<!-- Tiêu đề-->
+{% block title %}
+Quản lý sách
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid" id="content">
+{% if current_user.is_authenticated %}
+        <h3>Xin chào {{ current_user.name }}!</h3>
+{% else %}
+        {% include 'admin/login.html' %}
+{% endif %}
+</div>
+{% endblock %} <!-- end block body -->
