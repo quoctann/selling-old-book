@@ -37,9 +37,9 @@
     <title>Sách cũ giá hạt dẻ</title>
   </head>
   <body>
-    <nav class="navbar navbar-light bg-light">
+    <nav class="navbar navbar-light bg-light shadow">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+        <span class="navbar-brand">
           <img
             src="{{ url_for('static', filename='images/default/book.png') }}"
             alt=""
@@ -48,7 +48,7 @@
             class="d-inline-block align-text-top"
           />
           Sách cũ giá hạt dẻ
-        </a>
+        </span>
       </div>
     </nav>
     {% block body %} {% endblock %}
@@ -61,7 +61,8 @@
           This simple web app also available at
           <a
             href="https://github.com/quoctann/selling-old-book"
-            class="text-decoration-none"></a>
+            class="text-decoration-none"
+            target="_blank">
             <i class="fab fa-github-alt"></i> Github</a
           >
         </p>

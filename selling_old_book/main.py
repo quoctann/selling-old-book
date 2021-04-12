@@ -1,6 +1,6 @@
 from selling_old_book import app, db, login
 from flask import Flask, render_template, request, redirect, url_for, session
-import hashlib, os, json
+import hashlib, os, json, csv
 from flask_login import login_user, logout_user, login_required, current_user
 from selling_old_book.admin import *
 
@@ -17,8 +17,14 @@ def user_load(user_id):
 
 @app.route('/')
 def index():
-    something = get_book()
-    return render_template('common_view/index.html', something=something)
+    product_list = get_book()
+    # Chuyển string sang list
+    for item in product_list:
+        # eval() bỏ dấu nháy đơn sring khi vừa get từ db về
+        item.img_path = eval(item.img_path)
+        # tách ra thành từng phần riêng trong list
+        parser = csv.reader(item.img_path)
+    return render_template('common_view/index.html', product_list=product_list)
 
 
 @app.route("/login-admin", methods=["GET", "POST"])

@@ -20,7 +20,8 @@ class BookStorage(db.Model):
     description = Column(String(255), nullable=False)
     price = Column(Integer, nullable=False)
     img_path = Column(String(255), nullable=False)
-    condition = Column(String(30), nullable=False)
+    condition = Column(String(100), nullable=False)
+    active = Column(Boolean, nullable=False, default=True)
 
 
 class User(AuthIndentityBase):
