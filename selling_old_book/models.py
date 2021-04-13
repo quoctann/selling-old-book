@@ -22,6 +22,7 @@ class BookStorage(db.Model):
     img_path = Column(String(255), nullable=False)
     condition = Column(String(100), nullable=False)
     active = Column(Boolean, nullable=False, default=True)
+    like = Column(Integer, nullable=False, default=0)
 
 
 class User(AuthIndentityBase):

@@ -1,7 +1,7 @@
 from flask_admin.contrib.sqla import ModelView
 from flask_admin import BaseView, expose
-from flask import redirect, url_for, request, session
-from selling_old_book import admin, db, utilities
+from flask import redirect, session
+from selling_old_book import admin, db
 from selling_old_book.models import BookStorage, User
 from flask_login import current_user, logout_user
 

@@ -50,15 +50,7 @@ h2 {
   border-radius: 5px;
 }
 
-.heart {
+.btn-outline-danger:hover .hovcolor {
   cursor: pointer;
-  height: 35px;
-  width: 35px;
-  font-size: 13px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #beb4aa;
-  border-radius: 50%;
-  background-color: #eee;
+  color: white !important;
 }

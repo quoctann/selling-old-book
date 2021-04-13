@@ -1,7 +1,7 @@
 from selling_old_book import app, db, login
-from flask import Flask, render_template, request, redirect, url_for, session
-import hashlib, os, json, csv
-from flask_login import login_user, logout_user, login_required, current_user
+from flask import Flask, render_template, request, url_for, session, jsonify
+import json, csv, hashlib
+from flask_login import login_user, logout_user, current_user
 from selling_old_book.admin import *
 
 
@@ -18,34 +18,46 @@ def user_load(user_id):
 @app.route('/')
 def index():
     product_list = get_book()
-    # Chuyển string sang list
+    # Parse String to List
     for item in product_list:
-        # eval() bỏ dấu nháy đơn sring khi vừa get từ db về
+        # eval() to delete '' at two ends of String
         item.img_path = eval(item.img_path)
-        # tách ra thành từng phần riêng trong list
+        # Separate each element in the String into a List
         parser = csv.reader(item.img_path)
     return render_template('common_view/index.html', product_list=product_list)
 
 
 @app.route("/login-admin", methods=["GET", "POST"])
-# Phương thức này được gọi từ login.html
+# Called from admin/login.html
 def login_admin():
-    # Reset bộ nhớ tạm của admin
     if request.method == "POST":
-        # Lấy dữ liệu từ form (thông qua request)
+        # Get data from form
         username = request.form.get("loginUsername")
         password = request.form.get("loginPassword")
-        # Dùng thuật toán MD5 băm mã ra dưới dạng hexa
+        # Password hashes using the MD5 algorithm, strip() to delete white space two ends of pswrd
         password = str(hashlib.md5(password.strip().encode("utf-8")).hexdigest())
-        # Strip() dùng để bỏ khoảng trắng ở hai đầu chuỗi ký tự
         user = User.query.filter(User.username == username,
                                  User.password == password).first()
-        # Nếu không giá trị thì trả về null
+        # Return None if don't have a valid user
         if user:
             login_user(user=user)
 
-    # Thực tế là chuyển đến trang admin -> index.html
+    # Redirect to admin/index.html
     return redirect("/admin")
+
+
+# API Increase likes
+@app.route("/api/like", methods=["POST"])
+def add_like():
+    data = json.loads(request.data)
+    like_count = int(data.get("likeCount"))
+    product_id = int(data.get("id"))
+    product = BookStorage.query.filter_by(id=product_id).first()
+    product.like += like_count
+    db.session.commit()
+    return jsonify({
+        'likeCount': product.like
+    })
 
 
 if __name__ == "__main__":
