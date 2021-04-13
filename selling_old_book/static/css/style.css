@@ -13,6 +13,10 @@ h2 {
   font-weight: 500;
 }
 
+.text-justify {
+    text-align: justify;
+}
+
 /* Scrollbar style */
 
 ::-webkit-scrollbar {
@@ -42,6 +46,7 @@ h2 {
   width: 400px;
   padding: 10px;
   border: 1px solid #eee;
+  margin: 10px;
 }
 
 .inner-card {

@@ -29,7 +29,7 @@
       <div class="mt-2 px-2 fw-bold">
         <i class="fas fa-check"></i> Tình trạng: {{ item.condition }}
       </div>
-      <div class="mt-2 px-2">{{ item.description[:200] }}...</div>
+      <div class="mt-2 px-2 text-justify">{{ item.description[:200] }}...</div>
       <div class="px-2 pt-2">
         {% if item.active %}
         <h3 class="text-success fw-bold">
@@ -67,7 +67,7 @@
       aria-labelledby="detailModalLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-dialog modal-dialog-scrollable modal-fullscreen-sm-down">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="detailModalLabel">
@@ -88,7 +88,7 @@
               alt="book image"
             />
             {% endfor %}
-            <p class="mt-2">{{ item.description }}</p>
+            <p class="mt-2 text-justify">{{ item.description|safe }}</p>
             <p class="mt-2">Tình trạng: {{ item.condition }}</p>
             <h4 class="mt-2">
               {% if item.active %}

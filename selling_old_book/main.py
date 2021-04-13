@@ -23,7 +23,8 @@ def index():
         # eval() to delete '' at two ends of String
         item.img_path = eval(item.img_path)
         # Separate each element in the String into a List
-        parser = csv.reader(item.img_path)
+        # parser = csv.reader(item.img_path)
+        # print(parser)
     return render_template('common_view/index.html', product_list=product_list)
 
 

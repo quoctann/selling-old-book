@@ -17,7 +17,7 @@ class BookStorage(db.Model):
     name = Column(String(100), nullable=False)
     author = Column(String(100), nullable=False)
     category = Column(String(100), nullable=False)
-    description = Column(String(255), nullable=False)
+    description = Column(String(2500), nullable=False)
     price = Column(Integer, nullable=False)
     img_path = Column(String(255), nullable=False)
     condition = Column(String(100), nullable=False)
