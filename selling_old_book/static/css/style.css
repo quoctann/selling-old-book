@@ -49,12 +49,6 @@ h2 {
   margin: 10px;
 }
 
-.inner-card {
-  background: #fff;
-  padding: 10px;
-  border-radius: 5px;
-}
-
 .btn-outline-danger:hover .hovcolor {
   cursor: pointer;
   color: white !important;

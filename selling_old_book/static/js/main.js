@@ -1,5 +1,5 @@
 function pressLike(id, likeCount) {
-    console.log("Hello");
+    console.log("ID: " + id + "; Count: " + likeCount);
     fetch('/api/like', {
         method: "post",
         body: JSON.stringify({
@@ -11,7 +11,7 @@ function pressLike(id, likeCount) {
         }
     }).then(res => res.json()).then(data => {
         console.log("OK");
-        var likeTag = document.getElementById("like");
+        var likeTag = document.getElementById("like" + id);
         likeTag.innerHTML = `${data.likeCount}`;
     }).catch(err => {
         console.log(err);

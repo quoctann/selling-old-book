@@ -24,7 +24,7 @@ def index():
         item.img_path = eval(item.img_path)
         # Separate each element in the String into a List
         # parser = csv.reader(item.img_path)
-        # print(parser)
+        print(item.img_path)
     return render_template('common_view/index.html', product_list=product_list)
 
 
